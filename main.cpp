@@ -13,6 +13,7 @@ int toInt(std::istream& stream)
 
     return out;
 }
+
 std::string buildMessage(int val)
 {
     std::stringstream ss;
@@ -24,11 +25,13 @@ int main()
 {
     using namespace std::chrono_literals;
 
-    while (true) {
+    while (true)
+    {
         std::fstream file("/sys/class/power_supply/BAT0/capacity", std::ios::in);
         auto BAT = toInt(file);
 
-        if (BAT <= 79) {
+        if (BAT <= 15)
+        {
             Notify::init("Batgirl");
             Notify::Notification notify("Batgirl", buildMessage(BAT), "dialog-information");
             notify.show();

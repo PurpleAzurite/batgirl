@@ -32,7 +32,7 @@ BinPackParameters: true
 BraceWrapping:
   AfterCaseLabel:  false
   AfterClass:      true
-  AfterControlStatement: Never
+  AfterControlStatement: true
   AfterEnum:       false
   AfterFunction:   true
   AfterNamespace:  false
