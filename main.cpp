@@ -13,7 +13,6 @@ int toInt(std::istream& stream)
 
     return out;
 }
-
 std::string buildMessage(int val)
 {
     std::stringstream ss;
@@ -21,31 +20,25 @@ std::string buildMessage(int val)
     return ss.str();
 }
 
-int main() 
+int main()
 {
-    std::fstream file("/sys/class/power_supply/BAT0/capacity", std::ios::in);
+    using namespace std::chrono_literals;
 
-    if (file.is_open())
-    {
-        const auto BAT = toInt(file);
+    while (true) {
+        std::fstream file("/sys/class/power_supply/BAT0/capacity", std::ios::in);
+        auto BAT = toInt(file);
 
-        using namespace std::chrono_literals;
-
-        while (true)
-        {
-            if (BAT <= 15)
-            {
-	            Notify::init("Batgirl");
-	            Notify::Notification notify("Batgirl", buildMessage(BAT), "dialog-information");
-	            notify.show();
-            }
-
-            std::this_thread::sleep_for(10min);
-
-            if (BAT == 1)
-                break;
+        if (BAT <= 79) {
+            Notify::init("Batgirl");
+            Notify::Notification notify("Batgirl", buildMessage(BAT), "dialog-information");
+            notify.show();
         }
+
+        if (BAT <= 1)
+            break;
+
+        std::this_thread::sleep_for(10min);
     }
 
-	return 0;
+    return 0;
 }
