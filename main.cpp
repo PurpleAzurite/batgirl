@@ -41,6 +41,9 @@ int main()
             }
 
             std::this_thread::sleep_for(10min);
+
+            if (BAT == 1)
+                break;
         }
     }
 
