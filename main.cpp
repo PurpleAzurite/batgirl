@@ -40,7 +40,7 @@ int main()
         if (BAT <= 1)
             break;
 
-        std::this_thread::sleep_for(10min);
+        std::this_thread::sleep_for(5min);
     }
 
     return 0;
