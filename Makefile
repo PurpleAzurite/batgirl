@@ -13,10 +13,10 @@ strip:
 	strip --strip-all $(OUT)
 
 install:
-	sudo cp $(OUT) /usr/bin -v
+	cp $(OUT) /usr/local/bin -v
 
 uninstall:
-	sudo rm /usr/bin/$(OUT) -v
+	rm /usr/local/bin/$(OUT) -v
 
 clean:
 	rm $(OUT)
